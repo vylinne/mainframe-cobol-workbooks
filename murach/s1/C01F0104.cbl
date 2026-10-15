@@ -1,8 +1,14 @@
        IDENTIFICATION DIVISION.
       *
-       PROGRAM-ID. CALC1000.
+       PROGRAM-ID.        C01F0104.
+      *PROGRAMMER.        Mike Murach.
+      *COMPLETION-DATE.   MARCH 28, 2004
+      *REMARKS.           THIS IS A SIMPLE INTERACTIVE PROGRAM THAT'S
+      *                   DESIGNED TO ILLUSTRATE THE USE OF COBOL.
       *
        ENVIRONMENT DIVISION.
+      *
+       INPUT-OUTPUT SECTION.
       *
        DATA DIVISION.
       *
