@@ -1,9 +1,23 @@
 # mainframe-cobol-workbooks
 Covering Murach's Mainframe COBOL mixed with IBM's modern z/OS training courses.
 
-## Local COBOL Development with GnuCOBOL
+## IBM z/OS Training Modules
+
+Fundamentals of IBM Z Path:
+https://www.ibm.com/training/learning-path/foundational-concepts-of-ibm-z-904
+
+IBM Z SysAdmin Path: 
+https://www.ibm.com/training/learning-path/ibm-z-system-administrator-learning-path-903
+
+## (Murach) Local COBOL Development with GnuCOBOL
 
 The COBOL programs in this repository can be compiled and run locally using **GnuCOBOL**.
+
+### Installing GnuCOBOL on MacOS
+
+```zsh
+brew install gnucobol
+```
 
 ### Installing GnuCOBOL on Arch Linux
 
