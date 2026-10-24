@@ -198,3 +198,31 @@ That is the full process from POR to IPL.
 
 ## Initial Program Load (IPL)
 
+Loading a copy of the OS, typically from DASD, into the main storage area and running it.
+
+The SYSRES device contains the data needed for the IPL.
+
+The bootsrap module at Cylinder 0, track 0 (pictured R2) is the first bit of data read as it starts to run the code. Its loaded into memory at address 0.
+
+The bootstrap module is just enough needed to bring up the full operating system. It reads and passes control onto the IPL text. (IEAIPL00)
+
+![Z IPL OS Load](z-ipl-os-load.png)
+
+While starting up, the OS looks for what is called a load parameter, which tells the LPAR in eight characters how we want to IPL. 
+* The first four characters of the parameter are the device number of the IODF device, which contains all of the hardware & software configuration for the system. 
+* Characters 5 & 6 contain the load member. 
+* The seventh position indicates what messages and prompts should be diplayed at IPL time. 
+* The last position at the end is the IEANUC0 member, usually pronounced IEA nuke 0.
+
+![Z IPL Load Parameter](z-ipl-load-parameter.png)
+
+The information it needs to come up...
+
+Load member (XX) - called titles like LOAD00 or LOAD01, this is what we look at in characters 5 & 6. The IPL resource initialization module (IRIM) first attempts to locate the LOADxx member in the SYS0.IPLPARM data set. If its not there, it'll look in the SYS1.IPLPARM, then SYS2.IPLPARM, up until SYS9.IPLPARM. This is located in the IODF volume, which is just a logical DASD disk.
+
+If the IRIM can't find the load member here, it will try another volume called the SYSRES volume. After that it will stop trying.
+
+If the load member is not found, the system will enter a non-restartable wait state. With that, the IPL was not successful and it won't work again until this is fixed.
+
+Once the IRIM can find the load member, it will open the data and have all the information it needs including the nucleus suffix, master catalog name, and the suffix of the IEASYSxx members. 
+
