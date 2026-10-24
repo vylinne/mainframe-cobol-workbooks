@@ -65,3 +65,21 @@ A hardware message is just when hardware components saw something worth noting t
 ### HMC/SE User Roles (default, can be added to):
 
 ![HMC Default User Roles](hmc-user-roles.png)
+
+## The Sysplex
+
+Mainframe architecture is specifically unique in the way the Sysplex can share resources and work together efficiently.
+
+* STP - Server Time Protocol, synchronizes time across LPARs. All LPARs must be in exact agreement on time.
+* GRS - Global Resource Serialization, allows LPARs to access the same resources concurrently, serializing where necessary to enable exclusive access.
+* XCF - Cross-Coupling Facility, manages communication between applications in a sysplex. Allows command executions from one LPAR to target another.
+* Coupling Links - connect LPARs to processors. Allows for memory access between systems.
+* CDS - Coupled Dataset, allows the different LPARs to work on the same sets of data without corruption. Contains information related to the parallel sysplex systems' working on these files.
+
+The WLM (Workload Manager) uses the Sysplex resources to balance things out.
+
+* Monoplex - one LPAR.
+* Base Sysplex - every multiple LPAR in the plex is connected to each other.
+* Parallel Sysplex - every multiple LPAR in the plex is connected to a Coupling Facility LPAR.
+
+Rolling IPLs in a parallel sysplex allow for different LPARs to get shut down and rebooted with less downtime for the overall system. 
